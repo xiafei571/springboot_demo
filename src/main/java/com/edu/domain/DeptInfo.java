@@ -32,6 +32,17 @@ public class DeptInfo {
 		this.loc = loc;
 	}
 
+	public DeptInfo(Integer deptno, String dname, String loc) {
+		super();
+		this.deptno = deptno;
+		this.dname = dname;
+		this.loc = loc;
+	}
+
+	// 无参构造函数
+	public DeptInfo() {
+	}
+
 	@Override
 	public String toString() {
 		return "DeptInfo [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";

@@ -8,21 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.edu.MySpringBoot;
+import com.edu.MySpringBootApplication;
 import com.edu.domain.DeptInfo;
-import com.edu.service.DeptService;
+import com.edu.mapper.DeptMapper;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MySpringBoot.class)
+@SpringBootTest(classes = MySpringBootApplication.class)
 public class DeptTest {
 
 	@Autowired
-	private DeptService deptService;
+	private DeptMapper deptMapper;
 
 	@Test
-	public void getDeptListTest() {
-		List<DeptInfo> list = deptService.getDeptList();
-		System.out.println(list.size());
+	public void deptListTest() {
+		List<DeptInfo> list = deptMapper.getDeptList();
+		for (DeptInfo dept : list) {
+			System.out.println(dept);
+		}
 	}
 
+	// 13:45 come back, 14:00 开始
 }

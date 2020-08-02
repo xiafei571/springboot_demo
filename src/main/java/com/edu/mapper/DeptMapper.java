@@ -13,27 +13,26 @@ import com.edu.domain.DeptInfo;
 @Mapper
 public interface DeptMapper {
 
-
-	@Select("select deptno, dname, loc from dept")
-	@ResultMap("deptResultMap")
+	@Select("select * from dept")
+	@ResultMap("deptInfoResult")
 	List<DeptInfo> getDeptList();
-
-	@Select("select count(*) from dept")
+	
+	@Select("select * from dept where deptno = #{deptno}")
+	@ResultMap("deptInfoResult")
+	DeptInfo getDeptById(@Param("deptno")Integer deptno);
+	
+	@Select("select count(*) as cnt from dept")
 	Integer getDeptCount();
-
-	@Select("select * from dept where deptno = #{id}")
-	DeptInfo getDeptById(@Param("id") Integer deptno);
-
+	
+	@Select("select * from dept limit #{cursor}, #{offset}")
+	@ResultMap("deptInfoResult")
+	List<DeptInfo> getDeptPage(@Param("cursor")Integer cursor, @Param("offset")Integer offset);
+	
 	Integer addDept(DeptInfo dept);
-
+	
 	Integer updateDept(DeptInfo dept);
-
+	
 	@Delete("delete from dept where deptno = #{deptno}")
-	Integer deleteDept(Integer deptno);
-
-	@Select("select deptno, dname, loc from dept limit #{cursor}, #{offset}")
-	@ResultMap("deptResultMap")
-	List<DeptInfo> getDeptPage(@Param("cursor") Integer cursor, @Param("offset") Integer offset);
-
+	Integer deleteDept(@Param("deptno") Integer deptno);
 
 }
